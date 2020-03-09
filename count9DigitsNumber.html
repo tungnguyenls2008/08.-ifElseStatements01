@@ -6,7 +6,7 @@
 </head>
 <body>
 <input type="number" id="inputNumber">
-<button type="button" id="confirmNumber" onclick="check2Digits();read9DigitsNumber()">Input your number here</button>
+<button type="button" id="confirmNumber" onclick="read9DigitsNumber()">Input your number here</button>
 <div id="display"></div>
 <div id="display2"></div>
 <script>
@@ -40,9 +40,6 @@
 
         let str = "";
         let num = document.getElementById('inputNumber').value;
-        if (num < 21) {
-            check2Digits();
-        }
         if (num.length === 9) {
             let hundredmillion = Math.floor(parseInt(num) / 100000000) % 10;
             let tenmillion = Math.floor(parseInt(num) / 10000000) % 10;
@@ -54,14 +51,720 @@
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
             str += readOutOneNumber(hundredmillion) + " HUNDRED ";
-            str += readOutOneNumber(tenmillion) + "TY ";
-            str += readOutOneNumber(million) + " MILLION ";
-            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
-            str += readOutOneNumber(tenthousand) + "TY ";
-            str += readOutOneNumber(thousand) + " THOUSAND ";
-            str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (tenmillion === 2) {
+                str += "TWENTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else if (tenmillion === 3) {
+                str += "THIRTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else if (tenmillion === 5) {
+                str += "FIFTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else {
+                str += readOutOneNumber(tenmillion) + "TY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+
+            }
         } else if (num.length === 8) {
             let tenmillion = Math.floor(parseInt(num) / 10000000) % 10;
             let million = Math.floor(num / 1000000) % 10;
@@ -71,14 +774,720 @@
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(tenmillion) + "TY ";
-            str += readOutOneNumber(million) + " MILLION ";
-            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
-            str += readOutOneNumber(tenthousand) + "TY ";
-            str += readOutOneNumber(thousand) + " THOUSAND ";
-            str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (tenmillion === 2) {
+                str += "TWENTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else if (tenmillion === 3) {
+                str += "THIRTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else if (tenmillion === 5) {
+                str += "FIFTY ";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+            } else {
+                str += readOutOneNumber(tenmillion) + "TY";
+                str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }
+                /*str += readOutOneNumber(million) + " MILLION ";
+                str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+                if (tenthousand === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+
+                } else if (tenthousand === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else if (tenthousand === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                } else {
+                    str += readOutOneNumber(tenthousand) + "TY ";
+                    str += readOutOneNumber(thousand) + " THOUSAND ";
+                    str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                    if (ten === 2) {
+                        str += " TWENTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 3) {
+                        str += " THIRTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else if (ten === 5) {
+                        str += " FIFTY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    } else {
+                        str += readOutOneNumber(ten) + "TY ";
+                        str += readOutOneNumber(lastDigit);
+                        document.getElementById('display').innerHTML = str;
+                    }
+                }*/
+
+            }
         } else if (num.length === 7) {
             let million = Math.floor(num / 1000000) % 10;
             let hundredthousand = Math.floor(num / 100000) % 10;
@@ -87,13 +1496,94 @@
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(million) + "TY ";
+            str += readOutOneNumber(million) + " MILLION ";
             str += readOutOneNumber(hundredthousand) + " HUNDRED ";
-            str += readOutOneNumber(tenthousand) + "TY ";
-            str += readOutOneNumber(thousand) + " THOUSAND ";
-            str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (tenthousand === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+
+            } else if (tenthousand === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else if (tenthousand === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else {
+                str += readOutOneNumber(tenthousand) + "TY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            }
         } else if (num.length === 6) {
             let hundredthousand = Math.floor(num / 100000) % 10;
             let tenthousand = Math.floor(num / 10000) % 10;
@@ -101,71 +1591,256 @@
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(hundredthousand) + "TY ";
-            str += readOutOneNumber(tenthousand) + "TY ";
-            str += readOutOneNumber(thousand) + " THOUSAND ";
-            str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+            if (tenthousand === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+
+            } else if (tenthousand === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else if (tenthousand === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else {
+                str += readOutOneNumber(tenthousand) + "TY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            }
         } else if (num.length === 5) {
             let tenthousand = Math.floor(num / 10000) % 10;
             let thousand = Math.floor(num / 1000) % 10;
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(tenthousand) + "TY ";
-            str += readOutOneNumber(thousand) + " THOUSAND ";
-            str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (tenthousand === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+
+            } else if (tenthousand === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten > 3) {
+                    str += readOutOneNumber(ten);
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else if (tenthousand === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                }
+            } else {
+                str += readOutOneNumber(tenthousand) + "TY ";
+                str += readOutOneNumber(thousand) + " THOUSAND ";
+                str += readOutOneNumber(hundred) + " HUNDRED AND ";
+                if (ten === 2) {
+                    str += " TWENTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 3) {
+                    str += " THIRTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else if (ten === 5) {
+                    str += " FIFTY ";
+                    str += readOutOneNumber(lastDigit);
+                    document.getElementById('display').innerHTML = str;
+                } else {
+                    str += readOutOneNumber(ten) + "TY ";
+                    str += readOutOneNumber(lastDigit);
+                }
+                document.getElementById('display').innerHTML = str;
+            }
         } else if (num.length === 4) {
             let thousand = Math.floor(num / 1000) % 10;
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(thousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
             str += readOutOneNumber(hundred) + " HUNDRED AND ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (ten === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(lastDigit);
+            } else if (ten === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(lastDigit);
+            } else if (ten === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else {
+                str += readOutOneNumber(ten) + "TY ";
+                str += readOutOneNumber(lastDigit);
+            }
+            document.getElementById('display').innerHTML = str;
         } else if (num.length === 3) {
             let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
             str += readOutOneNumber(hundred) + " HUNDRED ";
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
+            if (ten === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else if (ten === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else if (ten === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else {
+                str += readOutOneNumber(ten) + "TY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            }
         } else if (num.length === 2 && num > 20) {
             let ten = Math.floor(num / 10) % 10;
             let lastDigit = num % 10;
-            str += readOutOneNumber(ten) + "TY ";
-            str += readOutOneNumber(lastDigit);
-        } else if (num <= 20 && num >= 11)
-            check2Digits();
-        /*let million = Math.floor(num / 1000000) % 10;
-        let hundredthousand = Math.floor(num / 100000) % 10;
-        let tenthousand = Math.floor(num / 10000) % 10;
-        let thousand = Math.floor(num / 1000) % 10;
-        let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
-        let ten = Math.floor(num / 10) % 10;
-        let lastDigit = num % 10;
-
-
-
-        str += readOutOneNumber(million) + " MILLION ";
-        str += readOutOneNumber(hundredthousand) + " HUNDRED ";
-        str += readOutOneNumber(tenthousand) + "TY ";
-        str += readOutOneNumber(thousand) + " THOUSAND ";
-        str += readOutOneNumber(hundred) + " HUNDRED AND ";
-        str += readOutOneNumber(ten) + "TY ";
-        str += readOutOneNumber(lastDigit);*/
-        document.getElementById('display').innerHTML = str;
-
-    }
-
-    function check2Digits() {
-        let input = document.getElementById('inputNumber').value;
-        input = parseInt(input);
-        if (input >= 11 && input < 21) {
+            if (ten === 2) {
+                str += " TWENTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else if (ten === 3) {
+                str += " THIRTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else if (ten === 5) {
+                str += " FIFTY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            } else {
+                str += readOutOneNumber(ten) + "TY ";
+                str += readOutOneNumber(lastDigit);
+                document.getElementById('display').innerHTML = str;
+            }
+        } else if (num.length === 2 && num <= 20) {
+            let input = document.getElementById('inputNumber').value;
+            input = parseInt(input);
             switch (input) {
                 case 11:
                     document.getElementById('display').innerHTML = 'eleven';
@@ -197,9 +1872,9 @@
                 case 20:
                     document.getElementById('display').innerHTML = 'twenty';
                     break;
-                default:
-                    read9DigitsNumber();
             }
+
+
         }
     }
 </script>
