@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COUNT OUT LOUD A GIVEN 9 DIGITS NUMBER</title>
+</head>
+<body>
+<input type="number" id="inputNumber">
+<button type="button" id="confirmNumber" onclick="check2Digits();read9DigitsNumber()">Input your number here</button>
+<div id="display"></div>
+<div id="display2"></div>
+<script>
+    function readOutOneNumber(num) {
+        switch (num) {
+            case 0:
+                return "ZERO";
+            case 1:
+                return "ONE";
+            case 2:
+                return "TWO";
+            case 3:
+                return "THREE";
+            case 4:
+                return "FOUR";
+            case 5:
+                return "FIVE";
+            case 6:
+                return "SIX";
+            case 7:
+                return "SEVEN";
+            case 8:
+                return "EIGHT";
+            case 9 :
+                return "NINE";
+
+        }
+    }
+
+    function read9DigitsNumber() {
+
+        let str = "";
+        let num = document.getElementById('inputNumber').value;
+        if (num < 21) {
+            check2Digits();
+        }
+        if (num.length === 9) {
+            let hundredmillion = Math.floor(parseInt(num) / 100000000) % 10;
+            let tenmillion = Math.floor(parseInt(num) / 10000000) % 10;
+            let million = Math.floor(num / 1000000) % 10;
+            let hundredthousand = Math.floor(num / 100000) % 10;
+            let tenthousand = Math.floor(num / 10000) % 10;
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(hundredmillion) + " HUNDRED ";
+            str += readOutOneNumber(tenmillion) + "TY ";
+            str += readOutOneNumber(million) + " MILLION ";
+            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+            str += readOutOneNumber(tenthousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 8) {
+            let tenmillion = Math.floor(parseInt(num) / 10000000) % 10;
+            let million = Math.floor(num / 1000000) % 10;
+            let hundredthousand = Math.floor(num / 100000) % 10;
+            let tenthousand = Math.floor(num / 10000) % 10;
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(tenmillion) + "TY ";
+            str += readOutOneNumber(million) + " MILLION ";
+            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+            str += readOutOneNumber(tenthousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 7) {
+            let million = Math.floor(num / 1000000) % 10;
+            let hundredthousand = Math.floor(num / 100000) % 10;
+            let tenthousand = Math.floor(num / 10000) % 10;
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(million) + "TY ";
+            str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+            str += readOutOneNumber(tenthousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 6) {
+            let hundredthousand = Math.floor(num / 100000) % 10;
+            let tenthousand = Math.floor(num / 10000) % 10;
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(hundredthousand) + "TY ";
+            str += readOutOneNumber(tenthousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 5) {
+            let tenthousand = Math.floor(num / 10000) % 10;
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(tenthousand) + "TY ";
+            str += readOutOneNumber(thousand) + " THOUSAND ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 4) {
+            let thousand = Math.floor(num / 1000) % 10;
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(thousand) + "TY ";
+            str += readOutOneNumber(hundred) + " HUNDRED AND ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 3) {
+            let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(hundred) + " HUNDRED ";
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num.length === 2 && num > 20) {
+            let ten = Math.floor(num / 10) % 10;
+            let lastDigit = num % 10;
+            str += readOutOneNumber(ten) + "TY ";
+            str += readOutOneNumber(lastDigit);
+        } else if (num <= 20 && num >= 11)
+            check2Digits();
+        /*let million = Math.floor(num / 1000000) % 10;
+        let hundredthousand = Math.floor(num / 100000) % 10;
+        let tenthousand = Math.floor(num / 10000) % 10;
+        let thousand = Math.floor(num / 1000) % 10;
+        let hundred = Math.floor(num / 100) % 10;//Math.round, Math.floor, Math.ceil need to study
+        let ten = Math.floor(num / 10) % 10;
+        let lastDigit = num % 10;
+
+
+
+        str += readOutOneNumber(million) + " MILLION ";
+        str += readOutOneNumber(hundredthousand) + " HUNDRED ";
+        str += readOutOneNumber(tenthousand) + "TY ";
+        str += readOutOneNumber(thousand) + " THOUSAND ";
+        str += readOutOneNumber(hundred) + " HUNDRED AND ";
+        str += readOutOneNumber(ten) + "TY ";
+        str += readOutOneNumber(lastDigit);*/
+        document.getElementById('display').innerHTML = str;
+
+    }
+
+    function check2Digits() {
+        let input = document.getElementById('inputNumber').value;
+        input = parseInt(input);
+        if (input >= 11 && input < 21) {
+            switch (input) {
+                case 11:
+                    document.getElementById('display').innerHTML = 'eleven';
+                    break;
+                case 12:
+                    document.getElementById('display').innerHTML = 'twelve';
+                    break;
+                case 13:
+                    document.getElementById('display').innerHTML = 'thirteen';
+                    break;
+                case 14:
+                    document.getElementById('display').innerHTML = 'fourteen';
+                    break;
+                case 15:
+                    document.getElementById('display').innerHTML = 'fifteen';
+                    break;
+                case 16:
+                    document.getElementById('display').innerHTML = 'sixteen';
+                    break;
+                case 17:
+                    document.getElementById('display').innerHTML = 'seventeen';
+                    break;
+                case 18:
+                    document.getElementById('display').innerHTML = 'eighteen';
+                    break;
+                case 19:
+                    document.getElementById('display').innerHTML = 'nineteen';
+                    break;
+                case 20:
+                    document.getElementById('display').innerHTML = 'twenty';
+                    break;
+                default:
+                    read9DigitsNumber();
+            }
+        }
+    }
+</script>
+</body>
+</html>
