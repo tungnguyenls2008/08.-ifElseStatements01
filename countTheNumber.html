@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Count the Number</title>
+</head>
+<body>
+<input type="number" id="inputNumber">
+<button type="button" id="confirmNumber" onclick="read3DigitsNumber()">Input your number here</button>
+<div id="display"></div>
+<div id="display2"></div>
+<script>
+    function readOutOneNumber(num) {
+        switch (num) {
+            case 0: return "ZERO";
+            case 1: return "ONE";
+            case 2: return "TWO";
+            case 3: return "THREE";
+            case 4: return "FOUR";
+            case 5: return "FIVE";
+            case 6: return "SIX";
+            case 7: return "SEVEN";
+            case 8: return "EIGHT";
+            case 9: return "NINE";
+            default : return "from 0 to 9, smartass.";
+
+        }
+    }
+    function readOutAllNumber() {
+        let num=document.getElementById('inputNumber').value;
+        num=parseInt(num);
+        document.getElementById('display').innerHTML=readOutOneNumber(num);
+    }
+    function read3DigitsNumber() {
+        let num=document.getElementById('inputNumber').value;
+        num=parseInt(num);
+        let hundred=Math.floor(num/100);//Math.round, Math.floor, Math.ceil need to study
+        let Tenth=Math.floor(num/10)%10;
+        let lastDigit= num%10;
+        let str="";
+        str+=readOutOneNumber(hundred)+ " HUNDRED";
+        str+= readOutOneNumber(Tenth)+ "TY";
+        str+= readOutOneNumber(lastDigit);
+        document.getElementById('display').innerHTML= str;
+    }
+</script>
+</body>
+</html>
